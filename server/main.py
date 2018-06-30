@@ -24,12 +24,6 @@ class VideoStreamHandler(SocketServer.StreamRequestHandler):
                     stream_bytes = stream_bytes[last + 2:]
                     gray = cv2.imdecode(np.fromstring(jpg, dtype=np.uint8), cv2.CV_LOAD_IMAGE_GRAYSCALE)
                     # image = cv2.imdecode(np.fromstring(jpg, dtype=np.uint8), cv2.CV_LOAD_IMAGE_UNCHANGED)
-
-                    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-                    for (x, y, w, h) in faces:
-                        cv2.rectangle(gray, (x, y), (x + w, y + h), (255, 0, 0), 2)
-                        # roi_gray = gray[y:y + h, x:x + w]
-                        # roi_color = img[y:y + h, x:x + w]
                     cv2.imshow('img', gray)
                     # break
                     # cv2.imshow('frame', gray)
