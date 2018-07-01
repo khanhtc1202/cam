@@ -1,12 +1,16 @@
+import sys
 import socket
 import picamera
 import time
 import struct
 import io
 
+HOST = sys.argv[1]
+PORT = sys.argv[2]
+
 # create socket and bind host
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client_socket.connect(('192.168.0.17', 8888))
+client_socket.connect((HOST, PORT))
 connection = client_socket.makefile('wb')
 
 try:
@@ -18,7 +22,7 @@ try:
         stream = io.BytesIO()
         
         # send jpeg format video stream
-        for foo in camera.capture_continuous(stream, 'jpeg', use_video_port = True):
+        for foo in camera.capture_continuous(stream, 'jpeg', use_video_port=True):
             connection.write(struct.pack('<L', stream.tell()))
             connection.flush()
             stream.seek(0)
