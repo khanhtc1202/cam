@@ -38,7 +38,7 @@ class ThreadServer(object):
         server = SocketServer.TCPServer((host, port), VideoStreamHandler)
         server.serve_forever()
 
-    video_thread = threading.Thread(target=server_thread(HOST, PORT))
+    video_thread = threading.Thread(target=server_thread, args=(HOST, PORT))
     video_thread.start()
 
 if __name__ == '__main__':
