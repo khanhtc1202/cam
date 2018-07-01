@@ -6,7 +6,7 @@ import struct
 import io
 
 HOST = sys.argv[1]
-PORT = sys.argv[2]
+PORT = int(sys.argv[2])
 
 # create socket and bind host
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
