@@ -29,12 +29,11 @@ function start_client() {
   esac
 }
 
-while getopts m:h:p: OPT
+while getopts h:p:sc OPT
 do
   case $OPT in
-    "m" ) test "${OPTARG}" = "server" ;
-          test "${OPTARG}" = "client" ;
-      ;;
+    "s" ) MODE=server ;;
+    "c" ) MODE=client ;;
     "h" ) HOST=${OPTARG} ;;
 	"p" ) PORT=${OPTARG} ;;
     "*" ) usage ;;
