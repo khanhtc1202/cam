@@ -33,13 +33,16 @@ class VideoStreamHandler(SocketServer.StreamRequestHandler):
             print "Connection closed on thread 1"
 
 
-class ThreadServer(object):
-    def server_thread(self, host, port):
+class Server(object):
+    @staticmethod
+    def run(host, port):
         server = SocketServer.TCPServer((host, port), VideoStreamHandler)
         server.serve_forever()
 
-    video_thread = threading.Thread(target=server_thread, args=(HOST, PORT))
+
+def main():
+    video_thread = threading.Thread(target=Server.run, args=(HOST, PORT))
     video_thread.start()
 
 if __name__ == '__main__':
-    ThreadServer()
+    main()
