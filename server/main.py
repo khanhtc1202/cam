@@ -34,7 +34,7 @@ class VideoStreamHandler(SocketServer.StreamRequestHandler):
 
 
 class ThreadServer(object):
-    def server_thread(host, port):
+    def server_thread(self, host, port):
         server = SocketServer.TCPServer((host, port), VideoStreamHandler)
         server.serve_forever()
 
