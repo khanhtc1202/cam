@@ -19,12 +19,12 @@ class VideoStreamHandler(SocketServer.StreamRequestHandler):
                 first = stream_bytes.find('\xff\xd8')
                 last = stream_bytes.find('\xff\xd9')
                 if first != -1 and last != -1:
-                    print "Frame loaded..."
+                    print "Receive data from: ", self.client_address
                     jpg = stream_bytes[first:last + 2]
                     print "Size = ", len(jpg)
                     stream_bytes = stream_bytes[last + 2:]
                     gray = cv2.imdecode(np.fromstring(jpg, dtype=np.uint8), cv2.CV_LOAD_IMAGE_GRAYSCALE)
-                    cv2.imshow('frame', gray)
+                    cv2.imshow(self.client_address, gray)
                     if cv2.waitKey(1) & 0xFF == ord('q'):
                         break
 
