@@ -24,7 +24,7 @@ class VideoStreamHandler(SocketServer.StreamRequestHandler):
                     print "Size = ", len(jpg)
                     stream_bytes = stream_bytes[last + 2:]
                     gray = cv2.imdecode(np.fromstring(jpg, dtype=np.uint8), cv2.CV_LOAD_IMAGE_GRAYSCALE)
-                    cv2.imshow(self.client_address, gray)
+                    cv2.imshow(self.client_address[0], gray)
                     if cv2.waitKey(1) & 0xFF == ord('q'):
                         break
 
