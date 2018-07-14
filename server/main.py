@@ -36,13 +36,14 @@ class VideoStreamHandler(SocketServer.StreamRequestHandler):
 class Server(object):
     @staticmethod
     def run(host, port):
-        server = SocketServer.TCPServer((host, port), VideoStreamHandler)
+        server = SocketServer.ThreadingTCPServer((host, port), VideoStreamHandler)
         server.serve_forever()
 
 
 def main():
-    video_thread = threading.Thread(target=Server.run, args=(HOST, PORT))
-    video_thread.start()
+    # video_thread = threading.Thread(target=Server.run, args=(HOST, PORT))
+    # video_thread.start()
+    Server.run(HOST, PORT)
 
 if __name__ == '__main__':
     main()
